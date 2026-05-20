@@ -4,8 +4,8 @@
 @$password=$_POST["pa"] ?? "";
 $types="admin";
 $typesa="etudiant";
-$a=0;
-if (isset($_POST['ok'])) {
+$a=1;
+$passwordh=password_hash($password, PASSWORD_DEFAULT);
   try {
 $conn = new PDO(
     'mysql:host=localhost;dbname=database;charset=utf8',
@@ -18,7 +18,7 @@ $conn = new PDO(
 }catch(PDOException $e) {
   die("Could not connect. " . $e->getMessage());
 } 
-
+if (isset($_POST['ok'])) {
   $res=$conn->prepare("select * from utilisateur where username=? and mdp=? limit 1");
   $res->setFetchMode(PDO::FETCH_ASSOC);
   $res->execute(array($username,$password));

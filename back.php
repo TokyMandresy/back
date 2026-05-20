@@ -19,7 +19,7 @@ try {
   $sql="CREATE TABLE utilisateur (
      id INT  PRIMARY KEY UNIQUE AUTO_INCREMENT , 
      username VARCHAR(50) UNIQUE NOT NULL ,
-       mdp VARCHAR(50) NOT NULL,
+       mdp VARCHAR(250) NOT NULL,
        type VARCHAR(50) NOT NULL )
         ";
 
@@ -67,9 +67,9 @@ if (isset($_POST["ok"]) or isset($_POST["okk"]) ) {
     if (empty($niveau)) $message="erreur";   
   }
   if ($message==="") {
-     
+        $passwordh=password_hash($password, PASSWORD_DEFAULT);
       $rad=$conn->prepare("insert into utilisateur(username,mdp,type) values (?,?,?)");
-    $rad->execute(array($username,$password,$type));
+    $rad->execute(array($username,$passwordh,$type));
     $last_id = $conn->lastInsertId();
     if ($type==="etudiant") {
       
