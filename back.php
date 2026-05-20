@@ -80,6 +80,7 @@ if (isset($_POST["ok"]) or isset($_POST["okk"]) ) {
       
     }
     $message="SUCESS";
+    header('location:login.php');
   }
 }
 /*
@@ -139,8 +140,9 @@ if (!empty($username) and !empty($password) and !empty($type)) {
 		<input type="text" name="matricule"><br>
 		<label>niveau</label>
 		<input type="text" name="niveau"><br>
+          </div>
+
 		<button type="submit" name="okk" value="ok">ok</button>
-  </div>
     </form>
     <script>
       function toggleStudentFields() {
