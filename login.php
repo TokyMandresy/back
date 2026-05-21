@@ -4,7 +4,7 @@
 @$password=$_POST["pa"] ?? "";
 $types="admin";
 $typesa="etudiant";
-$a=1;
+$a=0;
 $passwordh=password_hash($password, PASSWORD_DEFAULT);
   try {
 $conn = new PDO(
@@ -21,9 +21,9 @@ $conn = new PDO(
 if (isset($_POST['ok'])) {
   $res=$conn->prepare("select * from utilisateur where username=? and mdp=? limit 1");
   $res->setFetchMode(PDO::FETCH_ASSOC);
-  $res->execute(array($username,$password));
+  $res->execute(array($username,$passwordh));
   $tab=$res->fetchAll();
-  if(count($tab)==0)
+  if(count($tab)===0)
       $message="<li>Mauvais login ou mot de passe!</li>";
     else{
       $nas=$conn->prepare("select * from utilisateur where type=? and username=? limit 1");
@@ -37,9 +37,9 @@ if (isset($_POST['ok'])) {
           $nash->execute();
           $io=$nash->fetchAll();
           if (count($io)!==0) {
-            while (a<=count($io)) {
+            while (a<count($io)) {
               echo io[$a]["nom"]." ".io[$a]["matricule"]." ".io[$a]["niveau"];
-              $a=$a+1;
+              $a++;
             }
           }
         }
