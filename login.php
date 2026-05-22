@@ -19,42 +19,38 @@ $conn = new PDO(
   die("Could not connect. " . $e->getMessage());
 } 
 if (isset($_POST['ok'])) {
-  $res=$conn->prepare("select * from utilisateur where username=? and mdp=? limit 1");
-  $res->setFetchMode(PDO::FETCH_ASSOC);
-  $res->execute(array($username,$passwordh));
-  $tab=$res->fetchAll();
-  if(count($tab)===0)
-      $message="<li>Mauvais login ou mot de passe!</li>";
-    else{
+  $CM=$conn->prepare("select mdp from utilisateur where username=?");
+  $CM->setFetchMode(PDO::FETCH_ASSOC);
+  $CM->execute(array($username));
+  $tap=$CM->fetchAll();
+  if (count($tap)!==0) {
+    if (password_verify($password, $tap[0]["mdp"])) {
       $nas=$conn->prepare("select * from utilisateur where type=? and username=? limit 1");
       $nas->setFetchMode(PDO::FETCH_ASSOC);
       $nas->execute(array($types,$username));
-      $tek=$res->fetchAll();
+      $tek=$nas->fetchAll();
       if (count($tek)!==0)
         {
-          $nash=$conn->prepare("select * from Etudiant");
-          $nash->setFetchMode(PDO::FETCH_ASSOC);
-          $nash->execute();
-          $io=$nash->fetchAll();
-          if (count($io)!==0) {
-            while (a<count($io)) {
-              echo io[$a]["nom"]." ".io[$a]["matricule"]." ".io[$a]["niveau"];
-              $a++;
-            }
-          }
+          $_SESSION['autoriser']='oui';
+          $_SESSION['type']='admin';
+          header('location:session.php');
         }
-      $silv=$conn->prepare("select * from utilisateur where type=? and username=? limit 1");
+      
+        $silv=$conn->prepare("select * from utilisateur where type=? and username=? limit 1");
       $silv->setFetchMode(PDO::FETCH_ASSOC);
       $silv->execute(array($typesa,$username));
       $no=$silv->fetchAll();
       if (count($no)!==0) {
-        echo no[0]["nom"]." ".no[0]["matricule"]." ".no[0]["niveau"];
-      }
+          $_SESSION['autoriser']='oui';
+          $_SESSION['type']="etudiant";
+          $_SESSION['matricule']=$no[0]["nom"]." ".$no[0]["matricule"]." ".$no[0]["niveau"];
+          header('location:session.php');
+    }
 
     }
   // code...
 }
-
+}
 
 
 
