@@ -34,6 +34,7 @@ if (isset($_POST['ok'])) {
           $_SESSION['autoriser']='oui';
           $_SESSION['type']='admin';
           header('location:session.php');
+          exit();
         }
       
         $silv=$conn->prepare("select * from utilisateur where type=? and username=? limit 1");
@@ -43,8 +44,14 @@ if (isset($_POST['ok'])) {
       if (count($no)!==0) {
           $_SESSION['autoriser']='oui';
           $_SESSION['type']="etudiant";
-          $_SESSION['matricule']=$no[0]["nom"]." ".$no[0]["matricule"]." ".$no[0]["niveau"];
-          header('location:session.php');
+       $nash=$conn->prepare("select * from Etudiant where idCompte=? limit 1");
+          $nash->setFetchMode(PDO::FETCH_ASSOC);
+          $nash->execute(array(($no[0]['id'])));
+          $io=$nash->fetchAll();
+          if (count($io)!==0) {
+            $_SESSION['matricule']=strtoupper($io[0]['nom']." ".$io[0]['matricule']." ".$io[0]['niveau']);
+            header('location:toky3.php');
+            exit();
     }
 
     }

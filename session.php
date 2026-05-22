@@ -58,8 +58,9 @@ $
           $nash->execute();
           $io=$nash->fetchAll();
            if (count($io)!==0) {
+           		 while ($a<count($io)) {
            	    echo $io[$a]["nom"]." ".$io[$a]["matricule"]." ".$io[$a]["niveau"];
-              $a++;
+              $a++;}
            }
 
 			}
