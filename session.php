@@ -51,16 +51,29 @@ $
 			<a href="deconnexion.php">Quitter la session</a>
 		</header>
 		<h1>
+			<table>
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>matricule</th>
+      <th>niveau</th>
+    </tr>
+  </thead>
+  <tbody>
+
 		<?php 
 			if ($_SESSION['type']==="admin") {
 				$nash=$conn->prepare("select * from Etudiant");
           $nash->setFetchMode(PDO::FETCH_ASSOC);
           $nash->execute();
           $io=$nash->fetchAll();
-           if (count($io)!==0) {
-           		 while ($a<count($io)) {
-           	    echo $io[$a]["nom"]." ".$io[$a]["matricule"]." ".$io[$a]["niveau"];
-              $a++;}
+           if (count($io)!==0) {?>
+
+           	<?	 while ($a<count($io)) {?>
+           	    <td><?php echo $io[$a]["nom"];?></td>
+           	    <td><?php echo 	$io[$a]["matricule"];?></td>
+           	    <td><?php echo 	$io[$a]["niveau"]; ?></td>
+             <?php $a++;}
            }
 
 			}
