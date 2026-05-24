@@ -73,6 +73,39 @@ $
            	    <td><?php echo $io[$a]["nom"];?></td>
            	    <td><?php echo 	$io[$a]["matricule"];?></td>
            	    <td><?php echo 	$io[$a]["niveau"]; ?></td>
+           	    <button onclick="document.getElementById('popup<?= $io[$a]['idCompte']; ?>').showModal()">
+            Modifier
+        </button> </td>
+        <td>
+        	<button onclick=""></button>
+        </td>
+                <?php $cd=$io[$a]["idCompte"]; ?>
+
+
+<dialog id="popup<?= $io[$a]["idCompte"]; ?>">
+   <form action="" method="post">
+   	    <input type="hidden" 
+           name="id" 
+           value="<?= $io[$a]['idCompte']; ?>">
+    <label>nom</label>
+    <input type="text" name="no" value="<?php echo $io[$a]["nom"];?>"><br>
+    <label>matricule</label>
+    <input type="text" name="pass" value="<?php echo $io[$a]["matricule"]; ?>"><br>
+  
+       <button type="submit" name="ok">
+                    Enregistrer
+                </button>
+  	         <button 
+                    type="button"
+                    onclick="document.getElementById('popup<?= $io[$a]['idCompte']; ?>').close()"
+                >
+                    Fermer
+                </button>
+              </form>
+
+</dialog>
+
+           	     </tr>
              <?php $a++;}
            }
 
