@@ -1,5 +1,6 @@
 <?php
 $a=0;
+
  try {
 $conn = new PDO(
     'mysql:host=localhost;dbname=database;charset=utf8',
@@ -19,7 +20,15 @@ if (@$_SESSION['autoriser']!=='oui') {
 		// code...
 	
 	// code...
-}/*else {
+}if (isset($_POST['ok'])) {
+            @$nom=$_POST['no'];
+            @$matric=$_POST['pass'];
+            @$id=$_POST['id'];
+            $sql="UPDATE Etudiant set nom=? ,matricule=? where idCompte=?";
+            $stmt= $conn->prepare($sql);
+            $stmt->execute(array($nom, $matric, $id));
+            
+          }/*else {
 	if ($_SESSION['type']==="admin") {
 		 nash=$conn->prepare("select * from Etudiant");
           $nash->setFetchMode(PDO::FETCH_ASSOC);
