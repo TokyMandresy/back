@@ -13,6 +13,12 @@ $conn = new PDO(
 }catch(PDOException $e) {
   die("Could not connect. " . $e->getMessage());
 } 
+function removev($ID){
+  $sva="delete from Etudiant where idCompte=?"
+  $sta=$conn->prepare($sva);
+  $sta->execute(array($ID));
+}
+
 session_start();
 if (@$_SESSION['autoriser']!=='oui') {
 	header('location:login.php');
@@ -28,7 +34,19 @@ if (@$_SESSION['autoriser']!=='oui') {
             $stmt= $conn->prepare($sql);
             $stmt->execute(array($nom, $matric, $id));
             
-          }/*else {
+          }
+if (isset($_POST['del'])) {
+
+    $id = $_POST['id'];
+
+    $sql = "DELETE FROM Etudiant WHERE idCompte=?";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$id]);
+}
+
+
+    /*else {
 	if ($_SESSION['type']==="admin") {
 		 nash=$conn->prepare("select * from Etudiant");
           $nash->setFetchMode(PDO::FETCH_ASSOC);
@@ -82,12 +100,22 @@ $
            	    <td><?php echo $io[$a]["nom"];?></td>
            	    <td><?php echo 	$io[$a]["matricule"];?></td>
            	    <td><?php echo 	$io[$a]["niveau"]; ?></td>
-           	    <button onclick="document.getElementById('popup<?= $io[$a]['idCompte']; ?>').showModal()">
+                <td>
+                    <div style="display:flex; gap:8px; align-items:center;">
+        
+        <button onclick="document.getElementById('popup<?= $io[$a]['idCompte']; ?>').showModal()">
             Modifier
-        </button> </td>
-        <td>
-        	<button onclick=""></button>
-        </td>
+        </button> 
+       
+    
+          <form action="" method="post" style="margin: 0;">
+
+
+            <input type="hidden" name="id" value="<?php echo $io[$a]['idCompte'];?>">
+            <button name="del" type="submit">del</button>
+        </form> 
+    </div>
+</td> 
                 <?php $cd=$io[$a]["idCompte"]; ?>
 
 
