@@ -95,7 +95,7 @@ $
           $nash->execute();
           $io=$nash->fetchAll();
            if (count($io)!==0) {?>
-
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.."> 
            	<?	 while ($a<count($io)) {?>
            	    <td><?php echo $io[$a]["nom"];?></td>
            	    <td><?php echo 	$io[$a]["matricule"];?></td>
@@ -157,3 +157,36 @@ $
 		</h1>
 	</body>
 </html>
+<script>
+  
+
+function myFunction() {
+    const input = document.getElementById("myInput");
+    const filter = input.value.toUpperCase();
+    const table = document.getElementById("myTable");
+    const tr = table.getElementsByTagName("tr");
+
+    for (let i = 1; i < tr.length; i++) {
+
+        const tdNom = tr[i].getElementsByTagName("td")[0];
+        const tdMatricule = tr[i].getElementsByTagName("td")[1];
+        const tdniveau=tr[i].getElementsByTagName("td")[2];
+
+        if (tdNom || tdMatricule || tdniveau ) {
+
+            const nom = tdNom.textContent || tdNom.innerText;
+            const matricule = tdMatricule.textContent || tdMatricule.innerText;
+            const niveau=tdniveau.textContent || tdniveau.innerText;
+
+            if (
+                nom.toUpperCase().indexOf(filter) > -1 ||
+                matricule.toUpperCase().indexOf(filter) > -1 ||
+                niveau.toUpperCase().indexOf(filter) > -1
+            ) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}  </script>
