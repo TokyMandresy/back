@@ -1,18 +1,6 @@
 <?php
 $a=0;
-
- try {
-$conn = new PDO(
-    'mysql:host=localhost;dbname=database;charset=utf8',
-    'root',
-    ''
-);
-  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  
-
-}catch(PDOException $e) {
-  die("Could not connect. " . $e->getMessage());
-} 
+include('connexion.php');
 function removev($ID){
   $sva="delete from Etudiant where idCompte=?"
   $sta=$conn->prepare($sva);

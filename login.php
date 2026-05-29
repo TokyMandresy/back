@@ -6,18 +6,9 @@ $types="admin";
 $typesa="etudiant";
 $a=0;
 $passwordh=password_hash($password, PASSWORD_DEFAULT);
-  try {
-$conn = new PDO(
-    'mysql:host=localhost;dbname=database;charset=utf8',
-    'root',
-    ''
-);
-  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  
+include('connexion.php');
 
-}catch(PDOException $e) {
-  die("Could not connect. " . $e->getMessage());
-} 
+ 
 if (isset($_POST['ok'])) {
   $CM=$conn->prepare("select mdp from utilisateur where username=?");
   $CM->setFetchMode(PDO::FETCH_ASSOC);
