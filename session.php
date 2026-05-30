@@ -83,7 +83,44 @@ $
           $nash->execute();
           $io=$nash->fetchAll();
            if (count($io)!==0) {?>
-    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.."> 
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+    <?php $op=$conn->prepare("select distinct niveau , idCompte from Etudiant");
+            $op->setFetchMode(PDO::FETCH_ASSOC);
+            $op->execute();
+            $ia=$op->fetchAll(); 
+             if (count($ia)!==0) {
+              while ($b<count($ia)) { ?>
+                <button type="button" style="text-align: left" onclick="update('<?php echo $ia[$b]['niveau'];?>')"><?php echo $ia[$b]['niveau'];?></button>
+                <?php $b++;?>
+                         <script>
+           function update(niveauRecherche){
+
+    const filter = niveauRecherche.toUpperCase();
+
+    const table = document.getElementById("myTable");
+    const tr = table.getElementsByTagName("tr");
+
+    for (let i = 1; i < tr.length; i++) {
+
+        const tdniveau = tr[i].getElementsByTagName("td")[2];
+
+        if (tdniveau) {
+
+            const niveau = tdniveau.textContent || tdniveau.innerText;
+
+            if (niveau.toUpperCase().indexOf(filter) > -1) {
+
+                tr[i].style.display = "";
+
+            } else {
+
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+          
+                    </script>
            	<?	 while ($a<count($io)) {?>
            	    <td><?php echo $io[$a]["nom"];?></td>
            	    <td><?php echo 	$io[$a]["matricule"];?></td>
