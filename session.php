@@ -11,9 +11,9 @@ session_start();
 if (@$_SESSION['autoriser']!=='oui') {
 	header('location:login.php');
 
-		// code...
+		
 	
-	// code...
+	
 }if (isset($_POST['ok'])) {
             @$nom=$_POST['no'];
             @$matric=$_POST['pass'];
@@ -34,25 +34,7 @@ if (isset($_POST['del'])) {
 }
 
 
-    /*else {
-	if ($_SESSION['type']==="admin") {
-		 nash=$conn->prepare("select * from Etudiant");
-          $nash->setFetchMode(PDO::FETCH_ASSOC);
-          $nash->execute();
-          $io=$nash->fetchAll();
-           if (count($io)!==0) {
-           	    echo $io[$a]["nom"]." ".$io[$a]["matricule"]." ".$io[$a]["niveau"];
-              $a++;
-           }
-$
-
-	} 
-	if ($_SESSION['type']==="etudiant") {
-		echo $_SESSION['matricule'];
-	}
-
-}
-*/
+   
 
 ?>
 <!DOCYTPE html>
@@ -214,4 +196,5 @@ function myFunction() {
             }
         }
     }
-}  </script>
+}
+  </script>
