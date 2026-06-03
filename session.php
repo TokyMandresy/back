@@ -103,6 +103,7 @@ if (isset($_POST['del'])) {
 }
           
                     </script>
+                    <button type="button" onclick="reset()">all</button>
            	<?	 while ($a<count($io)) {?>
            	    <td><?php echo $io[$a]["nom"];?></td>
            	    <td><?php echo 	$io[$a]["matricule"];?></td>
