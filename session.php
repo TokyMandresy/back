@@ -21,6 +21,8 @@ if (@$_SESSION['autoriser']!=='oui') {
             $sql="UPDATE Etudiant set nom=? ,matricule=? where idCompte=?";
             $stmt= $conn->prepare($sql);
             $stmt->execute(array($nom, $matric, $id));
+            header("Location: ".$_SERVER['PHP_SELF']);
+exit;
             
           }
 if (isset($_POST['del'])) {
