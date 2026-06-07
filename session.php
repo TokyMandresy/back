@@ -42,6 +42,8 @@ if (isset($_POST['del'])) {
 <!DOCYTPE html>
 <html>
 	<head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://unpkg.com/jspdf-autotable@3.5.31/dist/jspdf.plugin.autotable.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="" />
 	</head>
 	<body>
