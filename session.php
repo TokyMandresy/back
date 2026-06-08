@@ -11,9 +11,6 @@ session_start();
 if (@$_SESSION['autoriser']!=='oui') {
 	header('location:login.php');
 
-		
-	
-	
 }if (isset($_POST['ok'])) {
             @$nom=$_POST['no'];
             @$matric=$_POST['pass'];
@@ -34,9 +31,6 @@ if (isset($_POST['del'])) {
     $stmt = $conn->prepare($sql);
     $stmt->execute([$id]);
 }
-
-
-   
 
 ?>
 <!DOCYTPE html>
@@ -104,9 +98,7 @@ if (isset($_POST['del'])) {
             }
         }
     }
-}
-          
-                    </script>
+}    </script>
                     <button type="button" onclick="reset()">all</button>
                       <button type="button" onclick="exportToPDF()">pdf</button>
            	<?	 while ($a<count($io)) {?>
