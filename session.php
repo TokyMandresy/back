@@ -195,4 +195,12 @@ function myFunction() {
         }
     }
 }
+function reset() {
+    const table = document.getElementById("myTable");
+    const trs = table.getElementsByTagName("tr");
+
+    for (let i = 1; i < trs.length; i++) {
+        trs[i].style.display = "";
+    }
+}
   </script>
