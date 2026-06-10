@@ -30,6 +30,9 @@ if (isset($_POST['del'])) {
 
     $stmt = $conn->prepare($sql);
     $stmt->execute([$id]);
+    $ui="DELETE  from utilisateur WHERE id=?  ";
+    $stl=$conn->prepare($ui);
+    $stl->execute([$id]);
 }
 
 ?>
