@@ -52,6 +52,7 @@ if (isset($_POST['del'])) {
 			<table>
   <thead>
     <tr>
+        <th>username</th>
       <th>Nom</th>
       <th>matricule</th>
       <th>niveau</th>
@@ -104,7 +105,14 @@ if (isset($_POST['del'])) {
 }    </script>
                     <button type="button" onclick="reset()">all</button>
                       <button type="button" onclick="exportToPDF()">pdf</button>
-           	<?	 while ($a<count($io)) {?>
+           	<?	 while ($a<count($io)) { $c=0;
+                <?php $ap=$conn->prepare("SELECT username from utilisateur where id=? ");
+                             $ap->setFetchMode(PDO::FETCH_ASSOC);
+           $ap->execute([$io[$a]["idCompte"]]);
+            $ic = $ap->fetchAll();
+             if (count($ic)!==0) {
+                while ($c<count($ic)) { ?>
+                      <td><?php echo $ic[$c]["username"];?></td>
            	    <td><?php echo $io[$a]["nom"];?></td>
            	    <td><?php echo 	$io[$a]["matricule"];?></td>
            	    <td><?php echo 	$io[$a]["niveau"]; ?></td>
@@ -151,8 +159,8 @@ if (isset($_POST['del'])) {
 </dialog>
 
            	     </tr>
-             <?php $a++;}
-           }
+             <?php $c++;}
+           } $a++;
 
 			}
 			if ($_SESSION['type']==='etudiant') {
