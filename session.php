@@ -214,4 +214,14 @@ function reset() {
         trs[i].style.display = "";
     }
 }
+function exportToPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    
+    doc.autoTable({ html: '#myTable' });
+
+    
+    doc.save('exp.pdf');
+}
   </script>
