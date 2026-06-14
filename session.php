@@ -187,17 +187,20 @@ function myFunction() {
         const tdNom = tr[i].getElementsByTagName("td")[0];
         const tdMatricule = tr[i].getElementsByTagName("td")[1];
         const tdniveau=tr[i].getElementsByTagName("td")[2];
+        const tdUser=tr[i].getElementsByTagName("td")[3];
 
-        if (tdNom || tdMatricule || tdniveau ) {
+        if (tdNom || tdMatricule || tdniveau || tdUser ) {
 
             const nom = tdNom.textContent || tdNom.innerText;
             const matricule = tdMatricule.textContent || tdMatricule.innerText;
             const niveau=tdniveau.textContent || tdniveau.innerText;
+            const user=tdUser.textContent || tdUser.innerText;
 
             if (
                 nom.toUpperCase().indexOf(filter) > -1 ||
                 matricule.toUpperCase().indexOf(filter) > -1 ||
-                niveau.toUpperCase().indexOf(filter) > -1
+                niveau.toUpperCase().indexOf(filter) > -1 || 
+                user.toUpperCase().indexOf(filter) < -1
             ) {
                 tr[i].style.display = "";
             } else {
