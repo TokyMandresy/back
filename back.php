@@ -3,7 +3,7 @@
 	include('connexion.php');
 
 
-/*
+
 try {
   $sql="CREATE TABLE utilisateur (
      id INT  PRIMARY KEY UNIQUE AUTO_INCREMENT , 
@@ -33,8 +33,19 @@ try {
       echo "Table created successfully";
   } catch(PDOException $e) {
   echo "Error creating table: " . $sql . "<br>" . $e->getMessage();
-}*/
+}
+try {
+  $sql="CREATE TABLE IF NOT EXISTS niveau (
+     id INT PRIMARY KEY UNIQUE AUTO_INCREMENT  , 
+       nomniveau VARCHAR(50) UNIQUE NOT NULL)
+       ";
 
+
+   $conn->exec($sql);
+      echo "Table created successfully";
+  } catch(PDOException $e) {
+  echo "Error creating table: " . $sql . "<br>" . $e->getMessage();
+}
 	@$username=$_POST["username"] ?? "";
 @$password=$_POST["password"] ?? "";
 @$type=$_POST["type"] ?? "";
