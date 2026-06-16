@@ -139,7 +139,21 @@ if (!empty($username) and !empty($password) and !empty($type)) {
 		<label>matricule</label>
 		<input type="text" name="matricule"><br>
 		<label>niveau</label>
-		<input type="text" name="niveau"><br>
+    <label> 
+      <?php $oki=$conn->prepare("select * from niveau");
+      $oki->setFetchMode(PDO::FETCH_ASSOC);
+      $oki->execute();
+      $okm=$oki->fetchAll();
+      if (count($okm)!==0) {
+        while ($a<count($okm)) {
+          
+        
+      ?>
+
+<input type="radio" name="niveau" value="<?php echo $okm[$a]["nomniveau"];?>"> <?php echo $okm[$a]["nomniveau"];?>
+
+</label>
+<?php $a++;} } ?>
           </div>
 
 		<button type="submit" name="okk" value="ok">ok</button>
