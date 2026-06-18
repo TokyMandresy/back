@@ -14,6 +14,16 @@
 	?>
 
 
+<input type="button" onclick="location.href='toky3.php';" value="Etudiants" />
+
+
+<input type="button" onclick="location.href='toky5.php';" value="Niveau" />
+<?php } 
+
+
+	?>
+
+
 
 
 
