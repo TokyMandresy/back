@@ -25,7 +25,8 @@ try {
        matricule VARCHAR(50) UNIQUE NOT NULL,
        nom VARCHAR(50) NOT NULL,
        niveau VARCHAR(50) NOT NULL,
-       idCompte INT(6))
+       idCompte INT(6),
+       email VARCHAR(50) NOT NULL)
         ";
 
 
