@@ -10,6 +10,7 @@ try {
      username VARCHAR(50) UNIQUE NOT NULL ,
        mdp VARCHAR(250) NOT NULL,
        type VARCHAR(50) NOT NULL )
+       
         ";
 
 
@@ -53,8 +54,9 @@ try {
 
 @$matricule=$_POST["matricule"] ?? "";
 @$niveau=$_POST["niveau"] ?? "";
-
+@$mail=$_POST["mail"] ?? "";
 @$na=$_POST["nom"] ?? "";
+
 $message="";
 
 echo $username." ".$type;
@@ -65,7 +67,8 @@ if (isset($_POST["ok"]) or isset($_POST["okk"]) ) {
   if ($type==="etudiant") {
     if (empty($na)) $message="erreur";
     if (empty($matricule)) $message="erreur";
-    if (empty($niveau)) $message="erreur";   
+    if (empty($niveau)) $message="erreur"; 
+    if (empty($mail)) $message="erreur";
   }
   if ($message==="") {
         $passwordh=password_hash($password, PASSWORD_DEFAULT);
@@ -134,6 +137,8 @@ if (!empty($username) and !empty($password) and !empty($type)) {
   <div id="that"> 
 		<label>nom</label>
 		<input type="text" name="nom"><br>
+		<label>email</label>
+		<input type="mail" name="mail"><br>
    
 
 		
