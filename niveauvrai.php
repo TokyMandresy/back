@@ -40,6 +40,16 @@ if (isset($_POST['ok'])) {
 	<title></title>
 </head>
 <body>
+<table id="myTable">
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>niveau</th>
 
+
+
+			</tr>
+		</thead>
+		<tbody>
 </body>
 </html>
