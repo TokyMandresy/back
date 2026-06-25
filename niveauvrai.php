@@ -50,6 +50,16 @@ if (isset($_POST['ok'])) {
 
 			</tr>
 		</thead>
-		<tbody>
+		<tbody>	<?php 
+						$nash=$conn->prepare("select * from niveau");
+          $nash->setFetchMode(PDO::FETCH_ASSOC);
+          $nash->execute();
+          $io=$nash->fetchAll();
+            if (count($io)!==0) { 
+            	 while ($c<count($io)) 
+ {
+			?>
+  <td><?php echo $io[$c]["id"];?></td>
+  
 </body>
 </html>
