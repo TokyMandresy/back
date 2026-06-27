@@ -60,12 +60,14 @@ if (isset($_POST['ok'])) {
  {
 			?>
   <td><?php echo $io[$c]["id"];?></td>
+  <td><?php echo $io[$c]["nomniveau"];?></td>
   <div>
 
         <button type="button" style="background-color: blue;"
             onclick="document.getElementById('popup<?= $io[$c]['id']; ?>').showModal()">
             Modifier
         </button>
+        
 
   
 </body>
